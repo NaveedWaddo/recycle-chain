@@ -14,9 +14,10 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
+    "dotenv": "^16.4.5",
+    "husky": "^8.0.0",
     "nx": "19.8.2",
-    "husky": "^8.0.0"
+    "prettier": "^3.3.3"
   },
   "scripts": {
     "format": "prettier  \"{apps,libs,standalone}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
