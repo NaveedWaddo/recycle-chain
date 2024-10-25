@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.27;
+pragma solidity ^0.8.24;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
 
-contract SimpleCounter{
+contract SimpleCounter {
     uint256 public number;
 
-    constructor(uint256 initialNumber){
+    constructor(uint256 initialNumber) {
         number = initialNumber;
     }
 

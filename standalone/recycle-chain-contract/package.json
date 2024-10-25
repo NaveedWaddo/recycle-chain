@@ -6,6 +6,9 @@
     "hardhat": "^2.22.5"
   },
   "scripts": {
-    "deploy": "npx hardhat ignition deploy ./ignition/modules/SimpleCounter.ts"
+    "deploy": "npx hardhat ignition deploy ./ignition/modules/RecycleChain.ts"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
   }
 }

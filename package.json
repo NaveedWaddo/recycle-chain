@@ -2,7 +2,7 @@
   "name": "recycle-chain",
   "version": "1.0.0",
   "license": "MIT",
-  "private": "true",
+  "private": true,
   "workspaces": {
     "packages": [
       "apps/*",
@@ -14,10 +14,9 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
-    "husky": "^8.0.0",
-    "nx": "19.8.2",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.2",
+    "nx": "19.2.3",
+    "husky": "^8.0.0"
   },
   "scripts": {
     "format": "prettier  \"{apps,libs,standalone}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
