@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "prettier": "^3.3.2",
-    "nx": "19.2.3",
+    "nx": "20.0.6",
     "husky": "^8.0.0"
   },
   "scripts": {
