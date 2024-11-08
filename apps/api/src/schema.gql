@@ -7,6 +7,8 @@ type ProductItem {
   id: String!
   timestamp: DateTime!
   productId: String!
+  product: Product!
+  transactions: [Transaction!]!
 }
 
 enum ProductStatus {
@@ -32,12 +34,21 @@ type Product {
   totalCount: Float!
 }
 
+type Transaction {
+  status: ProductStatus!
+  id: Float!
+  timestamp: DateTime!
+  productItemId: String!
+  productItem: ProductItem!
+}
+
 type Manufacturer {
   id: String!
   name: String!
   timestamp: DateTime!
   location: String!
   contact: String!
+  products: [Product!]!
 }
 
 type ToxicItem {
@@ -46,13 +57,7 @@ type ToxicItem {
   name: String!
   weight: Float!
   productId: String!
-}
-
-type Transaction {
-  status: ProductStatus!
-  id: Float!
-  timestamp: DateTime!
-  productItemId: String!
+  product: Product!
 }
 
 type Query {
