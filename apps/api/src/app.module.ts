@@ -11,7 +11,7 @@ import { ToxicItemsModule } from './models/toxic-items/toxic-items.module'
 import { TransactionsModule } from './models/transactions/transactions.module'
 import { join } from 'path'
 import { ManufacturersModule } from './models/manufacturers/manufacturers.module'
-import { ResyncModule } from './resync/resync.module';
+import { ResyncModule } from './resync/resync.module'
 
 @Module({
   imports: [
