@@ -4,18 +4,20 @@ import {
   RecycleChain__factory,
 } from '../../../../standalone/recycle-chain-contract/typechain-types'
 import { ethers } from 'ethers'
-import { trackDynamicFetch } from 'next/dist/server/app-render/dynamic-rendering'
-import { contractAddress } from '../../util/contract'
+import { contractAddress } from '../contract'
+
 declare global {
   interface Window {
     ethereum: any
   }
 }
+
 export const useAccount = () => {
   const [account, setAccount] = useState('')
   const [balance, setBalance] = useState('')
   const [isOwner, setIsOwner] = useState(false)
   const [contract, setContract] = useState<RecycleChain | null>(null)
+
   const initializeWeb3Provider = async () => {
     if (!window?.ethereum) {
       alert(
@@ -23,6 +25,7 @@ export const useAccount = () => {
       )
       return
     }
+
     try {
       await window.ethereum.request({
         method: 'wallet_addEthereumChain',
@@ -43,22 +46,28 @@ export const useAccount = () => {
       console.error('User denied account access or failed to add network')
     }
   }
+
   const fetchBlockchainData = async () => {
     if (!window?.ethereum) {
       console.error('Ethereum object not found')
       return
     }
+
     try {
       const provider = new ethers.BrowserProvider(window.ethereum)
+
       const signer = await provider.getSigner()
       const contract = RecycleChain__factory.connect(contractAddress, signer)
       setContract(contract)
+
       const accounts = await provider.send('eth_requestAccounts', [])
       if (accounts && accounts.length > 0) {
         const account = accounts[0]
         setAccount(account)
+
         const balance = await provider.getBalance(account)
         setBalance(ethers.formatEther(balance))
+
         const contractOwner = await contract.owner()
         setIsOwner(account.toLowerCase() === contractOwner.toLowerCase())
       } else {
@@ -69,11 +78,13 @@ export const useAccount = () => {
       console.error(`Error getting blockchain information `, error)
     }
   }
+
   useEffect(() => {
     //   initializeWeb3Provider
     initializeWeb3Provider()
     //   Fetch blockchain information
     fetchBlockchainData()
   }, [account])
+
   return { account, balance, isOwner, contract }
 }
