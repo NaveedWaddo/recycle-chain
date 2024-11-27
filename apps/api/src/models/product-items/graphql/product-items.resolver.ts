@@ -32,6 +32,7 @@ export class ProductItemsResolver {
       where: { id: productItem.productId },
     })
   }
+
   @ResolveField(() => [Transaction])
   transactions(@Parent() productItem: ProductItem) {
     return this.prisma.transaction.findMany({

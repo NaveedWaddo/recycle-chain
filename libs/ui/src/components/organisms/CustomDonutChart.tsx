@@ -1,11 +1,15 @@
 import { pie, PieArcDatum, arc } from 'd3'
 import { useMemo, useState } from 'react'
+
 type DonutChartData = { label: string; value: number; color: string }
+
 interface IDonutChartProps {
   data: DonutChartData[]
 }
+
 export const CustomDonutChart = ({ data }: IDonutChartProps) => {
   const [hoveredValue, setHoveredValue] = useState<DonutChartData | null>(null)
+
   const arcs = useMemo(() => {
     const coverage = 0.66 // 0 to 1
     const angleCoverage = coverage * Math.PI * 2 // 2xPI is full circle.
@@ -18,22 +22,25 @@ export const CustomDonutChart = ({ data }: IDonutChartProps) => {
       .startAngle(startAngle)
       .endAngle(endAngle)
       .padAngle(0.008)
+
     const arcs = calculateArcs(data)
-    console.log('arcs', arcs)
+
     return arcs
   }, [data])
+
   const diameter = 100
   const radius = diameter / 2
   const innerRadiusFactor = 0.6
   const innerRadius = radius * innerRadiusFactor
   const strokeWidth = 0.5
+
   const arcGenerator = arc<PieArcDatum<DonutChartData>>()
     .innerRadius(innerRadius)
     .outerRadius(radius)
     .cornerRadius(2)
-  console.log('arcGenerator ', arcGenerator)
+
   return (
-    <div className="relative bg-gray-50">
+    <div className="relative  ">
       <svg
         viewBox={`${-strokeWidth / 2} ${-strokeWidth / 2} ${diameter + strokeWidth} ${diameter - 25}`}
       >
